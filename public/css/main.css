@@ -15,11 +15,37 @@ h1 {
 }
 
 .cardCategory {
-    color: gray;
+    color: grey;
 }
 
 .cardPrice {
     font-size: 14px;
+}
+
+/*----PRODUCT-VIEW----*/
+
+.productImg img {
+    width: 100%;
+}
+
+.productCategory {
+    color: grey;
+}
+
+.productPrice {
+    font-weight: bold;
+}
+
+.productSize ul {
+    padding-left: 0;
+}
+
+.productSize li {
+    display: inline-block;
+    width: 32px;
+    list-style: none;
+    border: 1px solid black;
+    text-align: center;
 }
 
 /*----FOOTER----*/
