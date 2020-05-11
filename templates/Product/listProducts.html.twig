@@ -1,8 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}Produits{% endblock %}
 
 {% block body %}
-    <h1>Accueil</h1>
-    <p>Salut {{ name }} et bienvenue dans mon site</p>
+    <h1>Produits</h1>
+
+    <div class="d-flex justify-content-between flex-wrap">
+        {% for i in 0..32 %}
+            <div class="card mb-2">
+                <a href="/products/view">
+                    <img src="http://via.placeholder.com/256x256" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <span class="cardCategory">Categorie</span>
+                        <h5 class="card-title mb-0">Product Name<h5>
+                        <span class="cardPrice">29,99€</span>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

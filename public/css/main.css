@@ -1,0 +1,38 @@
+
+h1 {
+    margin-bottom: 24px;
+}
+
+/*----CARD-----*/
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-body * {
+    text-decoration: none;
+    color: black;
+}
+
+.cardCategory {
+    color: gray;
+}
+
+.cardPrice {
+    font-size: 14px;
+}
+
+/*----FOOTER----*/
+
+footer li {
+    list-style: none;
+}
+
+footer a {
+    color: grey;
+}
+
+footer a:hover {
+    text-decoration: none;
+    color: black;
+}
