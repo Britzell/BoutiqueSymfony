@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductController extends AbstractController
 {
     /**
-     * @Route("/products")
+     * @Route("/products", name="product_list")
      */
     public function listProducts()
     {
@@ -22,7 +22,7 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/products/{id}/view")
+     * @Route("/product/{id}/view", name="product_view")
      */
     public function viewProduct($id)
     {

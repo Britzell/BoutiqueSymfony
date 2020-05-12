@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/sign-in")
+     * @Route("/sign-in", name="sign_in")
      */
     public function signIn()
     {
@@ -18,7 +18,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/sign-up")
+     * @Route("/sign-up", name="sign_up")
      */
     public function signUp()
     {

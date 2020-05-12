@@ -4,17 +4,17 @@
             <div class="col">
                 <h3>Navigation</h3>
                 <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/products">Produits</a></li>
-                    <li><a href="/products/view">Produit aléatoire</a></li>
+                    <li><a href="{{ path('home') }}">Home</a></li>
+                    <li><a href="{{ path('product_list') }}">Produits</a></li>
+                    <li><a href="{{ path('product_view', {id: 2}) }}">Produit aléatoire</a></li>
                 </ul>
             </div>
             <div class="col">
                 <h3>Contact & Connexion</h3>
                 <ul>
-                    <li><a href="/contact">Contact</a></li>
-                    <li><a href="/sign-in">Connexion</a></li>
-                    <li><a href="/sign-up">Inscription</a></li>
+                    <li><a href="{{ path('not_found') }}">Contact</a></li>
+                    <li><a href="{{ path('sign_in') }}">Connexion</a></li>
+                    <li><a href="{{ path('sign_up') }}">Inscription</a></li>
                 </ul>
             </div>
             <div class="col">
