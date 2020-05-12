@@ -17,12 +17,18 @@
             </li>
         </ul>
         <ul class="navbar-nav mt-2 mt-lg-0">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('sign_in') }}">Connexion</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('sign_up') }}">Créer un compte</a>
-            </li>
+            {% if not app.user %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('sign_in') }}">Connexion</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('sign_up') }}">Créer un compte</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('logout') }}">Deconnexion</a>
+                </li>
+            {% endif %}
         </ul>
     </div>
 </nav>

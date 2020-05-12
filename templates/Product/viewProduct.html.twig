@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nom du produit{% endblock %}
+{% block title %}{{ product.name }}{% endblock %}
 
 {% block body %}
 
@@ -9,8 +9,8 @@
             <img src="http://via.placeholder.com/512x512" alt="">
         </div>
         <div class="col-md-6">
-            <span class="productCategory">Categorie</span>
-            <h1>{{ article.title }}</h1>
+            <span class="productCategory">{{ product.category.name }}</span>
+            <h1>{{ product.name }}</h1>
             <span class="productPrice">29,99 €</span>
 
             <div class="productSize mt-2">
@@ -27,7 +27,7 @@
             <div class="productDescription">
                 <span>Description :</span>
                 <p>
-                    {{ article.content }}
+                    {{ product.content }}
                 </p>
             </div>
 

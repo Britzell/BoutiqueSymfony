@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
@@ -7,21 +9,18 @@
 
     <div class="row justify-content-center">
         <div class="col-md-5">
-            <form>
-                <div class="form-group">
-                    <label for="email">Adresse e-mail :</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" name="email">
-                </div>
-                <div class="form-group">
-                    <label for="password">Mot de passe :</label>
-                    <input type="password" class="form-control" name="password">
-                </div>
-                <div class="form-group">
-                    <label for="password_verify">Verification du mot de passe :</label>
-                    <input type="password" class="form-control" name="password_verify">
-                </div>
-                <button type="submit" class="btn btn-dark">Envoyer</button>
-            </form>
+
+            {{ form_start(form) }}
+
+            {{ form_row(form.email, {'label': 'Adresse email :','attr': {'placeholder': 'Adresse email ...'}}) }}
+            {{ form_row(form.firstname, {'label': 'Prénom :','attr': {'placeholder': 'Prénom ...'}}) }}
+            {{ form_row(form.lastname, {'label': 'Nom :','attr': {'placeholder': 'Nom ...'}}) }}
+            {{ form_row(form.password, {'label': 'Mot de passe :','attr': {'placeholder': 'Mot de passe !'}}) }}
+            {{ form_row(form.confirm_password, {'label': 'Confirmer le mot de passe :','attr': {'placeholder': 'Répétez votre mot de passe ...'}}) }}
+
+            <button type="submit" class="btn btn-dark">Envoyer</button>
+
+            {{ form_end(form) }}
         </div>
     </div>
 
