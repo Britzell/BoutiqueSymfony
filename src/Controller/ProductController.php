@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -13,14 +14,27 @@ class ProductController extends AbstractController
      */
     public function listProducts()
     {
-        return $this->render('Product/listProducts.html.twig');
+        $articles = $this->getDoctrine()->getRepository(Article::class)->findAll();
+
+        return $this->render('Product/listProducts.html.twig', [
+            'articles' => $articles
+        ]);
     }
 
     /**
-     * @Route("/products/view")
+     * @Route("/products/{id}/view")
      */
-    public function viewProduct()
+    public function viewProduct($id)
     {
-        return $this->render('Product/viewProduct.html.twig');
+        $article = $this->getDoctrine()->getRepository(Article::class)->find($id);
+
+        dump($article);
+
+        if ($article === null)
+            throw $this->createNotFoundException('The article with ID "' . $id . '" is not found');
+
+        return $this->render('Product/viewProduct.html.twig', [
+            'article' => $article,
+        ]);
     }
 }

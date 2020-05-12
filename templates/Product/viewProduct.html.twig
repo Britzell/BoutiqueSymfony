@@ -10,7 +10,7 @@
         </div>
         <div class="col-md-6">
             <span class="productCategory">Categorie</span>
-            <h1>Nom du produit</h1>
+            <h1>{{ article.title }}</h1>
             <span class="productPrice">29,99 €</span>
 
             <div class="productSize mt-2">
@@ -27,7 +27,7 @@
             <div class="productDescription">
                 <span>Description :</span>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate deserunt dolor, eaque ex expedita fugit iste itaque, labore maxime odio perferendis porro quia quos rerum.
+                    {{ article.content }}
                 </p>
             </div>
 
