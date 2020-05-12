@@ -3,7 +3,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Article;
+use App\Entity\Category;
+use App\Entity\Product;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -14,27 +15,42 @@ class ProductController extends AbstractController
      */
     public function listProducts()
     {
-        $articles = $this->getDoctrine()->getRepository(Article::class)->findAll();
-
+        $products = $this->getDoctrine()->getRepository(Product::class)->findAll();
         return $this->render('Product/listProducts.html.twig', [
-            'articles' => $articles
+            'products' => $products,
         ]);
     }
 
     /**
-     * @Route("/product/{id}/view", name="product_view")
+     * @Route("/product/{slug}", name="product_view")
      */
-    public function viewProduct($id)
+    public function viewProduct(Product $product)
     {
-        $article = $this->getDoctrine()->getRepository(Article::class)->find($id);
-
-        dump($article);
-
-        if ($article === null)
-            throw $this->createNotFoundException('The article with ID "' . $id . '" is not found');
-
         return $this->render('Product/viewProduct.html.twig', [
-            'article' => $article,
+            'product' => $product,
         ]);
+    }
+
+    /**
+     * @Route("/product/add/{nb}")
+     */
+    public function addProduct($nb = 1)
+    {
+        $repository = $this->getDoctrine()->getRepository(Category::class);
+        $repository = $repository->findAll();
+
+        for ($i = 0; $i < $nb; $i++) {
+            $product = new Product();
+            $product->setName('Name');
+            $product->setContent('Content');
+            $product->setSlug('product-' . random_int(100, 999));
+            $product->setCategory($repository[random_int(0, count($repository)-1)]);
+            $product->setCreatedAt(new \DateTime());
+            $this->getDoctrine()->getManager()->persist($product);
+        }
+
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->redirect('/');
     }
 }

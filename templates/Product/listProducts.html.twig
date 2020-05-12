@@ -6,13 +6,13 @@
     <h1>Produits</h1>
 
     <div class="d-flex justify-content-between flex-wrap">
-        {% for article in articles %}
+        {% for product in products %}
             <div class="card mb-2">
-                <a href="{{ path('product_view', {id: article.id}) }}">
+                <a href="{{ path('product_view', {slug: product.slug}) }}">
                     <img src="http://via.placeholder.com/256x256" class="card-img-top" alt="">
                     <div class="card-body">
-                        <span class="cardCategory">Categorie</span>
-                        <h5 class="card-title mb-0">{{ article.title }}<h5>
+                        <span class="cardCategory">{{ product.category.name }}</span>
+                        <h5 class="card-title mb-0">{{ product.name }}<h5>
                         <span class="cardPrice">29,99 €</span>
                     </div>
                 </a>
