@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -50,6 +52,16 @@ class User implements UserInterface
      * @Assert\EqualTo(propertyPath="password", message="Vous n'avez pas tapé le même mot de passe")
      */
     private $confirm_password;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ProductComment::class, mappedBy="user")
+     */
+    private $productComments;
+
+    public function __construct()
+    {
+        $this->productComments = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -134,5 +146,36 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         // TODO: Implement eraseCredentials() method.
+    }
+
+    /**
+     * @return Collection|ProductComment[]
+     */
+    public function getProductComments(): Collection
+    {
+        return $this->productComments;
+    }
+
+    public function addProductComment(ProductComment $productComment): self
+    {
+        if (!$this->productComments->contains($productComment)) {
+            $this->productComments[] = $productComment;
+            $productComment->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProductComment(ProductComment $productComment): self
+    {
+        if ($this->productComments->contains($productComment)) {
+            $this->productComments->removeElement($productComment);
+            // set the owning side to null (unless already changed)
+            if ($productComment->getUser() === $this) {
+                $productComment->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

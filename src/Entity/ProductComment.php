@@ -31,9 +31,14 @@ class ProductComment
     /**
      * @var Product[] $product
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\Product", inversedBy="comments")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Product", inversedBy="comments", cascade={"remove"})
      */
     private $product;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="productComments")
+     */
+    private $user;
 
     public function getId(): ?int
     {
@@ -68,5 +73,17 @@ class ProductComment
     public function setProduct($product): void
     {
         $this->product = $product;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
     }
 }

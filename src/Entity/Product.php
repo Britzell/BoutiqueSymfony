@@ -58,7 +58,7 @@ class Product
     /**
      * @var ArrayCollection|ProductComment[]
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\ProductComment", mappedBy="product")
+     * @ORM\OneToMany(targetEntity="App\Entity\ProductComment", mappedBy="product", cascade={"remove"})
      */
     private $comments;
 

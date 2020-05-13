@@ -37,16 +37,21 @@
         </div>
     </div>
 
-    {% for comment in product.comments %}
     <div class="row mt-2">
         <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    {{ comment.content }}
+            <h3>Commentaires :</h3>
+            <a href="{{ path('product_comment_create', {id: product.id}) }}">Ajouter un commentaire</a>
+        </div>
+
+        {% for comment in product.comments %}
+            <div class="col-md-12 mt-2">
+                <div class="card">
+                    <div class="card-body">
+                        {{ comment.content }}
+                    </div>
                 </div>
             </div>
-        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 
 {% endblock %}
