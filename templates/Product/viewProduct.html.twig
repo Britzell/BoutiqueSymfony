@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <div class="row">
+    <div class="row mb-5">
         <div class="col-md-6 productImg">
             <img src="http://via.placeholder.com/512x512" alt="">
         </div>
@@ -13,16 +13,16 @@
             <h1>{{ product.name }}</h1>
             <span class="productPrice">29,99 €</span>
 
-            <div class="productSize mt-2">
-                <span>Choisir une taille :</span>
-                <ul>
-                    <li>XS</li>
-                    <li>S</li>
-                    <li>M</li>
-                    <li>L</li>
-                    <li>XL</li>
-                </ul>
-            </div>
+{#            <div class="productSize mt-2">#}
+{#                <span>Choisir une taille :</span>#}
+{#                <ul>#}
+{#                    <li>XS</li>#}
+{#                    <li>S</li>#}
+{#                    <li>M</li>#}
+{#                    <li>L</li>#}
+{#                    <li>XL</li>#}
+{#                </ul>#}
+{#            </div>#}
 
             <div class="productDescription">
                 <span>Description :</span>
@@ -36,5 +36,17 @@
             </div>
         </div>
     </div>
+
+    {% for comment in product.comments %}
+    <div class="row mt-2">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    {{ comment.content }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
 
 {% endblock %}

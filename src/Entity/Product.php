@@ -3,10 +3,15 @@
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=ProductRepository::class)
+ * @UniqueEntity("slug")
  */
 class Product
 {
@@ -38,10 +43,29 @@ class Product
     private $createdAt;
 
     /**
+     * @ORM\Column(type="float")
+     *
+     * @Assert\GreaterThan(0)
+     */
+    private $price;
+
+    /**
      * @ORM\ManyToOne(targetEntity=Category::class)
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
+
+    /**
+     * @var ArrayCollection|ProductComment[]
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\ProductComment", mappedBy="product")
+     */
+    private $comments;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -96,6 +120,16 @@ class Product
         return $this;
     }
 
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    public function setPrice($price): void
+    {
+        $this->price = $price;
+    }
+
     public function getCategory(): ?Category
     {
         return $this->category;
@@ -104,6 +138,18 @@ class Product
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    public function setComments(ProductComment $comments): self
+    {
+        $this->comments = $comments;
 
         return $this;
     }
