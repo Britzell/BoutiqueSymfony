@@ -4,6 +4,48 @@
 
 {% block body %}
 
+    <h1>Verification de la commande</h1>
 
+    <h2>Carte</h2>
+    <ul>
+        <li>Carte: {{ card.number | slice(12) }}</li>
+        <li>Expiration: {{ card.expMonth }}/{{ card.expYear }}</li>
+        <li><a href="{{ path('checkout_add_card') }}">Modifier</a></li>
+    </ul>
+
+    <h2>Produits</h2>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Produit</th>
+            <th>Prix</th>
+            <th>Quantité</th>
+            <th>sous-total</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for cart in cartData %}
+            <tr>
+                <td><img src="http://via.placeholder.com/96x96" alt=""></td>
+                <td>{{ cart.product.name }}</td>
+                <td>{{ cart.product.price }} €</td>
+                <td>{{ cart.quantity }}</td>
+                <td>{{ cart.product.price * cart.quantity }} €</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="4" class="text-right">Total :</td>
+            <td>{{ total }} €</td>
+        </tr>
+        </tfoot>
+    </table>
+
+    <div class="text-center">
+        <a href="{{ path('checkout_buy') }}" class="btn btn-secondary">Acheter</a>
+    </div>
 
 {% endblock %}

@@ -42,7 +42,7 @@ class CartService
 
     public function deleteCart()
     {
-        $this->session->set('cart', []);
+        $this->session->remove('cart');
     }
 
     public function getCart(): array
