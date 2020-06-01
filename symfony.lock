@@ -2,6 +2,9 @@
     "cocur/slugify": {
         "version": "v4.0.0"
     },
+    "curl/curl": {
+        "version": "2.3.0"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
