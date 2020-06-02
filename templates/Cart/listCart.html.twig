@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier{% endblock %}
+
+{% block body %}
+    <h1>Panier</h1>
+
+    {% if cartData %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Produit</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+                <th>sous-total</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for cart in cartData %}
+                <tr>
+                    <td><img src="http://via.placeholder.com/96x96" alt=""></td>
+                    <td>{{ cart.product.name }}</td>
+                    <td>{{ cart.product.price }} €</td>
+                    <td>{{ cart.quantity }}</td>
+                    <td>{{ cart.product.price * cart.quantity }} €</td>
+                    <td><a href="{{ path('cart_delete_product', {id: cart.product.id}) }}">x</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="4" class="text-right">Total :</td>
+                <td>{{ total }} €</td>
+                <td></td>
+            </tr>
+            </tfoot>
+        </table>
+
+        <div class="text-right">
+            <a href="{{ path('checkout_verify') }}" class="btn btn-secondary">Passer la commande</a>
+        </div>
+
+    {% else %}
+        <p>Panier vide</p>
+    {% endif %}
+
+{% endblock %}

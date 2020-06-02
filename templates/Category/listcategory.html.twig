@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categories{% endblock %}
+
+{% block body %}
+    <h1>Categories</h1>
+
+    <div class="d-flex justify-content-between flex-wrap">
+        {% for category in categories %}
+            <div class="card mb-2">
+                <a href="{{ path('category_view', {id: category.id, slug: category.slug}) }}">
+                    <img src="http://via.placeholder.com/256x256" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title mb-0">{{ category.name }}<h5>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

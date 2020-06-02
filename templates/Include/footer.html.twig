@@ -1,0 +1,31 @@
+<footer class="footer bg-light py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3>Navigation</h3>
+                <ul>
+                    <li><a href="{{ path('home') }}">Home</a></li>
+                    <li><a href="{{ path('product_list') }}">Produits</a></li>
+{#                    <li><a href="{{ path('product_view', {id: 2}) }}">Produit aléatoire</a></li>#}
+                </ul>
+            </div>
+            <div class="col">
+                <h3>Contact & Connexion</h3>
+                <ul>
+                    <li><a href="{{ path('not_found') }}">Contact</a></li>
+                    <li><a href="{{ path('sign_in') }}">Connexion</a></li>
+                    <li><a href="{{ path('sign_up') }}">Inscription</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h3>Newsletter</h3>
+                <form action="">
+                    <div class="form-group">
+                        <input type="email" class="form-control form-control-sm">
+                    </div>
+                    <button type="submit" class="btn btn-dark btn-sm">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</footer>

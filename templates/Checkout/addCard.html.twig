@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mode de paiement{% endblock %}
+
+{% block body %}
+
+    <h1>Ajouter une carte</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            {{ form_start(form) }}
+
+            {{ form_row(form.number, {'label': 'Votre numéro de carte blue :','attr': {'placeholder': '4242 4242 4242 4242', 'value': '4242 4242 4242 4242'}}) }}
+            {{ form_row(form.exp_month, {'label': 'Mois :', 'attr': {'placeholder': 'MM', 'value': '12'}}) }}
+            {{ form_row(form.exp_year, {'label': 'Année :', 'attr': {'placeholder': 'YY', 'value': '22'}}) }}
+            {{ form_row(form.cvc, {'label': 'CVC :', 'attr': {'placeholder': 'CVC', 'value': '123'}}) }}
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-dark">Ajouter</button>
+            </div>
+
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+
+{% endblock %}
