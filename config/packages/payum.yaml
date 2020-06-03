@@ -15,3 +15,8 @@ payum:
     gateways:
         offline:
             factory: offline
+        paypal:
+            factory: paypal_express_checkout
+            username: sb-8cc9o1875326_api1.business.example.com
+            password: EPPBDXFE9P7BKCMV
+            signature: Aa3zhgdKERtB4tcA.kTvAagxGiJIAny6.Z7D0wfk1m9C-pL44rNZyfo8

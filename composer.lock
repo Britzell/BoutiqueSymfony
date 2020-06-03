@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "02fbdb980b1b6ce5791bfd45089fe59c",
+    "content-hash": "c4ea4b526f40fe92862f54489c7010db",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -2643,6 +2643,70 @@
             "time": "2019-11-23T14:41:43+00:00"
         },
         {
+            "name": "payum/paypal-express-checkout-nvp",
+            "version": "1.6.0",
+            "target-dir": "Payum/Paypal/ExpressCheckout/Nvp",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Payum/PaypalExpressCheckoutNvp.git",
+                "reference": "937023f6d49da62df700c3861e1ad07709590dbb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Payum/PaypalExpressCheckoutNvp/zipball/937023f6d49da62df700c3861e1ad07709590dbb",
+                "reference": "937023f6d49da62df700c3861e1ad07709590dbb",
+                "shasum": ""
+            },
+            "require": {
+                "payum/core": "^1.5"
+            },
+            "require-dev": {
+                "payum/core": "^1.5",
+                "php-http/guzzle6-adapter": "^1.0",
+                "phpunit/phpunit": "^5.7",
+                "symfony/phpunit-bridge": "^3.1|^4"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Payum\\Paypal\\ExpressCheckout\\Nvp": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kotlyar Maksim",
+                    "email": "kotlyar.maksim@gmail.com"
+                },
+                {
+                    "name": "Payum project",
+                    "homepage": "https://payum.forma-pro.com/"
+                },
+                {
+                    "name": "Community contributions",
+                    "homepage": "https://github.com/Payum/PaypalExpressCheckoutNvp/contributors"
+                }
+            ],
+            "description": "The Payum extension. It provides Paypal ExpressCheckout payment integration.",
+            "homepage": "https://payum.forma-pro.com/",
+            "keywords": [
+                "digital goods",
+                "express checkout",
+                "payment",
+                "paypal",
+                "recurring payment"
+            ],
+            "time": "2019-11-23T14:41:43+00:00"
+        },
+        {
             "name": "payum/payum-bundle",
             "version": "2.4.1",
             "source": {
@@ -2745,16 +2809,16 @@
         },
         {
             "name": "php-http/guzzle6-adapter",
-            "version": "dev-master",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/guzzle6-adapter.git",
-                "reference": "bd7b4056e083b62ab98442a4459fd3f163027ec0"
+                "reference": "6074a4b1f4d5c21061b70bab3b8ad484282fe31f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/guzzle6-adapter/zipball/bd7b4056e083b62ab98442a4459fd3f163027ec0",
-                "reference": "bd7b4056e083b62ab98442a4459fd3f163027ec0",
+                "url": "https://api.github.com/repos/php-http/guzzle6-adapter/zipball/6074a4b1f4d5c21061b70bab3b8ad484282fe31f",
+                "reference": "6074a4b1f4d5c21061b70bab3b8ad484282fe31f",
                 "shasum": ""
             },
             "require": {
@@ -2790,12 +2854,12 @@
             ],
             "authors": [
                 {
-                    "name": "David de Boer",
-                    "email": "david@ddeboer.nl"
-                },
-                {
                     "name": "Márk Sági-Kazár",
                     "email": "mark.sagikazar@gmail.com"
+                },
+                {
+                    "name": "David de Boer",
+                    "email": "david@ddeboer.nl"
                 }
             ],
             "description": "Guzzle 6 HTTP Adapter",
@@ -2804,7 +2868,7 @@
                 "Guzzle",
                 "http"
             ],
-            "time": "2019-12-20T11:46:55+00:00"
+            "time": "2018-12-16T14:44:03+00:00"
         },
         {
             "name": "php-http/httplug",
@@ -9281,8 +9345,7 @@
     "stability-flags": {
         "cocur/slugify": 20,
         "payum/offline": 20,
-        "payum/payum-bundle": 20,
-        "php-http/guzzle6-adapter": 20
+        "payum/payum-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

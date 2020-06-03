@@ -7,7 +7,6 @@ use App\Entity\Category;
 use App\Entity\Product;
 use App\Entity\ProductComment;
 use Cocur\Slugify\Slugify;
-use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -61,7 +60,7 @@ class ProductController extends AbstractController
             $this->getDoctrine()->getManager()->persist($product);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('product_view', ['slug' => $product->getSlug()]);
+            return $this->redirectToRoute('product_view', ['id' => $product->getId(), 'slug' => $product->getSlug()]);
         }
 
         return $this->render('Product/createProduct.html.twig', [

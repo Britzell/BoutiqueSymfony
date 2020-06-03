@@ -138,6 +138,9 @@
     "payum/offline": {
         "version": "1.6.0"
     },
+    "payum/paypal-express-checkout-nvp": {
+        "version": "1.6.0"
+    },
     "payum/payum-bundle": {
         "version": "2.4",
         "recipe": {
