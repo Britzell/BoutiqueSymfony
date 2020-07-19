@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Checkout\Card;
 use App\Entity\Checkout\GatewayConfig;
+use App\Form\AddressType;
 use App\Form\CheckoutType;
 use App\Form\ConfigPaypalGatewayConfigType;
 use App\Service\CartService;
@@ -31,6 +32,18 @@ class CheckoutController extends AbstractController
     }
 
     /**
+     * @Route("/checkout/add/address", name="checkout_add_address")
+     */
+    public function addAddress()
+    {
+        $form = $this->createForm(AddressType::class);
+
+        return $this->render('Checkout/address.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
      * @Route("/checkout", name="checkout_verify")
      */
     public function checkoutVerify(CartService $cartService, SessionInterface $session)
@@ -39,7 +52,7 @@ class CheckoutController extends AbstractController
         if ($this->check($session))
             return $this->check($session);
 
-        $form = $this->createFormBuilder();
+//        $form = $this->createFormBuilder();
 
         return $this->render('Checkout/verify.html.twig', [
             // 'card' => $session->get('card'),
@@ -94,7 +107,7 @@ class CheckoutController extends AbstractController
             $error = 'Erreur lors du paiement par carte';
         }
 
-        return $this->render('Checkout/buy.html.twig', [
+        return $this->render('Checkout/done.html.twig', [
             'error' => $error,
         ]);
     }
@@ -112,13 +125,21 @@ class CheckoutController extends AbstractController
      */
     public function paypalDone(Request $request, PaypalService $paypalService)
     {
-        return $paypalService->donePayment($request);
+        return $this->doneCheckout($paypalService->donePayment($request));
     }
 
     /**
-     * @Route("/checkout/card", name="checkout_stripe")
+     * @Route("/checkout/payment", name="checkout_stripe")
      */
     public function stripePayment(StripeService $stripeService)
+    {
+        return $this->doneCheckout($stripeService->createPayment($this->getUser()));
+    }
+
+    /**
+     * @Route("/checkout/payment/done", name="checkout_stripe_done")
+     */
+    public function stripeDone(StripeService $stripeService)
     {
         if ($stripeService->createPayment($this->getUser()) === false)
             $error = 'Erreur lors du paiement stipe';
@@ -127,16 +148,18 @@ class CheckoutController extends AbstractController
     /**
      * @Route("/checkout/done", name="checkout_done")
      */
-    public function doneCheckout(Request $request)
+    public function doneCheckout(array $data, CartService $cartService)
     {
-        dd($request);
-        $error = null;
-        $payment = $paypalService->donePayment($request);
-        if ($payment['status'] === 'captured')
-            $error = 'Merci de votre achat !';
+        $title = null;
+        if ($data['status'] === 'captured') {
+            $title = 'Merci de votre achat !';
+            $cartService->deleteCart();
+        }
+        else
+            $title = 'Erreur lors de votre achat';
 
-        return $this->render('Checkout/buy.html.twig', [
-            'error' => $error,
+        return $this->render('Checkout/done.html.twig', [
+            'title' => $title,
         ]);
     }
 }

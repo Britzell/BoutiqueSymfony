@@ -10,18 +10,26 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class UserController extends AbstractController
 {
     /**
      * @Route("/sign-in", name="sign_in")
      */
-    public function signIn(Request $request)
+    public function signIn(Request $request, AuthenticationUtils $authenticationUtils)
     {
+        $lastAuthenticationError = $authenticationUtils->getLastAuthenticationError();
+        $lastEmailAddress = $authenticationUtils->getLastUsername();
 
+        if ($request->query->has('email')) {
+            $lastEmailAddress = $request->query->get('email');
+        }
 
         return $this->render('User/signIn.html.twig', [
-
+            'lastAuthenticationError' => $lastAuthenticationError,
+            'lastEmailAddress' => $lastEmailAddress
         ]);
     }
 
@@ -51,7 +59,10 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/logout", name="logout")
+     * @Route("/sign-out", name="sign_out")
      */
-    public function logout() {}
+    public function signOut()
+    {
+        throw new \Exception('Don\'t forget to activate logout in security.yaml');
+    }
 }

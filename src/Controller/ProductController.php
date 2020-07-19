@@ -34,6 +34,8 @@ class ProductController extends AbstractController
      */
     public function createProduct(Request $request)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $product = new Product();
         $repository = $this->getDoctrine()->getRepository(Category::class);
         $categories = $repository->findAll();

@@ -54,6 +54,13 @@ class User implements UserInterface
     private $confirm_password;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $role = 'ROLE_USER';
+
+    /**
      * @ORM\OneToMany(targetEntity=ProductComment::class, mappedBy="user")
      */
     private $productComments;
@@ -128,9 +135,22 @@ class User implements UserInterface
         return $this;
     }
 
+    public function getRole(): string
+    {
+        return $this->role;
+    }
+
+    public function setRole(string $role): void
+    {
+        $this->role = $role;
+    }
+
+    /**
+     * @return string[]
+     */
     public function getRoles()
     {
-        return ['ROLE_USER'];
+        return [$this->getRole()];
     }
 
     public function getSalt()
@@ -140,7 +160,7 @@ class User implements UserInterface
 
     public function getUsername()
     {
-        $this->getEmail();
+        return $this->getEmail();
     }
 
     public function eraseCredentials()
